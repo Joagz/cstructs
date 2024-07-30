@@ -1,0 +1,16 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./src/darr/",
+      "-I./src/",
+      "-o",
+      "./build/darr/darr.o",
+      "./src/darr/darr.c"
+    ],
+    "directory": "/home/joagz/Desktop/data-structures",
+    "file": "/home/joagz/Desktop/data-structures/src/darr/darr.c",
+    "output": "/home/joagz/Desktop/data-structures/build/darr/darr.o"
+  }
+]
