@@ -11,7 +11,10 @@ MAIN=./bin/main
 DYNAMIC_ARRAY_SRC=./src/darr/darr.c
 DYNAMIC_ARRAY_O=./build/darr/darr.o 
 
-FILES = $(DYNAMIC_ARRAY_O)
+LINKED_LIST_SRC=./src/linkedlist/linkedlist.c
+LINKED_LIST_O=./build/linkedlist/linkedlist.o
+
+FILES = $(DYNAMIC_ARRAY_O) $(LINKED_LIST_O)
 INCLUDES = -I./src/ 
 
 all: $(FILES)
@@ -19,6 +22,9 @@ all: $(FILES)
 
 $(DYNAMIC_ARRAY_O): $(DYNAMIC_ARRAY_SRC)
 	$(CC) -c $(DYNAMIC_ARRAY_SRC) -I./src/darr/ -I./src/ -o $(DYNAMIC_ARRAY_O)
+
+$(LINKED_LIST_O): $(LINKED_LIST_SRC)
+	$(CC) -c $(LINKED_LIST_SRC) -I./src/linkedlist/ -I./src/ -o $(LINKED_LIST_O)
 
 clean:
 	rm -rf ./build/main.o

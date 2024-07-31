@@ -23,10 +23,16 @@ struct darr* darr_new(uint32_t capacity)
     break;
     case SYS_16BIT:
       arr->items = calloc(capacity, SYS_16BIT_PTR_SIZE);
+#ifdef DEBUG 
+    printf("DEBUG: allocated items array correctly with size of %d\n", SYS_16BIT_PTR_SIZE);
+#endif /* ifdef  */
       break;
     // default to 32 bit system 
     default:
       arr->items = calloc(capacity, SYS_32BIT_PTR_SIZE);
+#ifdef DEBUG 
+    printf("DEBUG: allocated items array correctly with size of %d\n", SYS_32BIT_PTR_SIZE);
+#endif /* ifdef  */
       break;
   }
 
@@ -46,14 +52,11 @@ void resize_arr(struct darr *ptr)
 {
   ptr->items = realloc(ptr->items, (ptr->capacity + ptr->initial_capacity)*sizeof(void*));
   ptr->capacity = ptr->initial_capacity + ptr->capacity;
-  printf("CAPCITY CHANGED: %d\n", ptr->capacity);
 }
 
 void nresize_arr(struct darr *ptr, uint32_t capacity)
 {
-
   for(int i = capacity; i < ptr->capacity; i++){
-    printf("freed %d\n", i);
     free(ptr->items[i]);
   }
 
@@ -86,7 +89,6 @@ int darr_delete(struct darr* arr, int index)
 
   if(arr->length == 0) return -1;
 
-  printf("DELETING\n");
   if(darr_get(arr, index) == NULL)
   {
     return -1;
@@ -102,13 +104,11 @@ int darr_delete(struct darr* arr, int index)
   // Shrink the array if the capacity is 2 the initial capacity above length
   if((arr->length+2*arr->initial_capacity) < arr->capacity)
   {
-    printf("CAPACITY %d\nNEW CAPACITY %d\n", arr->capacity, arr->capacity-arr->initial_capacity);
     nresize_arr(arr, arr->capacity-arr->initial_capacity);
     return 1;
   }
 
   arr->length--;
-  printf("ARR LEN = %d\n", arr->length);
   return 0;
 }
 
