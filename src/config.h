@@ -12,4 +12,9 @@
 
 #define SYS_TYPE 0x01
 
+#define ITEM_STACK 0
+#define ITEM_HEAP 1
+#define ITEM_DEFAULT ITEM_STACK
+
+
 #endif // !CONFIG_H

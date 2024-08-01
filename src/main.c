@@ -1,8 +1,11 @@
 #include "main.h"
 #include "darr/darr.h"
 #include "linkedlist/linkedlist.h"
+#include "queue/queue.h"
+#include "config.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void testdarr()
 {
@@ -41,9 +44,9 @@ void testdarr()
   darr_free(arr);
 }
 
-int main(int argc, char *argv[])
+void linkedlisttest()
 {
-
+  
   struct linkedlist *l = linkedlist_new();
  
   printf("linkedlist created successfully\n");
@@ -60,6 +63,29 @@ int main(int argc, char *argv[])
   printf("l[2] = %d\n", *((int*)linkedlist_get(l, 2)->ptr));
 
   linkedlist_free(l);
+
+}
+
+int main(int argc, char *argv[])
+{
+  queue *queue = new_queue();
+
+  char *str1 = strdup("Hola");
+  char *str2 = strdup("Mundo");
+  char *str3 = strdup("!\n");
+  
+  queue_enqueue(queue, (void*) str1);
+  queue_enqueue(queue, (void*) str2);
+  queue_enqueue(queue, (void*) str3);
+
+  char *item;
+  while ((item = (char *)queue_dequeue(queue)) != NULL) {
+    printf("%s ", item);
+    free(item);
+  }
+
+  queue_free(queue, ITEM_HEAP);
+
 }
 
 
