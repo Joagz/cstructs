@@ -13,33 +13,39 @@ struct darr* darr_new(uint32_t capacity)
   arr->initial_capacity = capacity;
   arr->length = 0;
 
+#ifndef SYS_TYPE
+  exit(0);
+#endif /* ifndef SYS_TYPE */
+
+#ifdef SYS_TYPE
   switch (SYS_TYPE) {
     case SYS_64BIT:
       arr->items = calloc(capacity, SYS_64BIT_PTR_SIZE);
 
 #ifdef DEBUG 
-    printf("DEBUG: allocated items array correctly with size of %d\n", SYS_64BIT_PTR_SIZE);
+    printf("DEBUG: allocated items array correctly with size of %d bytes (64-bit arch)\n", SYS_64BIT_PTR_SIZE);
 #endif /* ifdef  */
     break;
     case SYS_16BIT:
       arr->items = calloc(capacity, SYS_16BIT_PTR_SIZE);
 #ifdef DEBUG 
-    printf("DEBUG: allocated items array correctly with size of %d\n", SYS_16BIT_PTR_SIZE);
+    printf("DEBUG: allocated items array correctly with size of %d bytes (16-bit arch)\n", SYS_16BIT_PTR_SIZE);
 #endif /* ifdef  */
-      break;
+    break;
     // default to 32 bit system 
     default:
       arr->items = calloc(capacity, SYS_32BIT_PTR_SIZE);
 #ifdef DEBUG 
-    printf("DEBUG: allocated items array correctly with size of %d\n", SYS_32BIT_PTR_SIZE);
+    printf("DEBUG: allocated items array correctly with size of %d bytes (32-bit arch)\n", SYS_32BIT_PTR_SIZE);
 #endif /* ifdef  */
-      break;
+    break;
   }
-
+#endif
 
   return arr;
 }
 
+// free a dynamic array
 void darr_free(struct darr *ptr)
 {
   for(int i = 0; i < ptr->length; i++)

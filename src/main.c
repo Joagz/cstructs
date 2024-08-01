@@ -66,8 +66,9 @@ void linkedlisttest()
 
 }
 
-int main(int argc, char *argv[])
+void queuetest()
 {
+  
   queue *queue = new_queue();
 
   char *str1 = strdup("Hola");
@@ -84,8 +85,19 @@ int main(int argc, char *argv[])
     free(item);
   }
 
-  queue_free(queue, ITEM_HEAP);
+  queue_hfree(queue);
 
+}
+
+int main(int argc, char *argv[])
+{
+
+#ifndef SYS_TYPE
+  printf("Please, compile this library defining SYS_TYPE in the Makefile: \n");
+  printf("-DSYS_TYPE={your system type flag value}\n");
+  return EXIT_FAILURE;
+#endif /* ifndef SYS_TYPE */
+ testdarr(); 
 }
 
 

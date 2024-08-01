@@ -1,5 +1,4 @@
 #include "queue.h"
-#include "config.h"
 #include "linkedlist/linkedlist.h"
 #include <stddef.h>
 #include <stdio.h>
@@ -108,18 +107,35 @@ struct node * queue_node_dequeue(queue *queue)
 
 }
 
-void queue_free(queue *queue, int item_type)
+
+// free a queue with heap elements
+// this function automatically frees the nodes and 
+// pointers that each node point to
+//
+// will cause a segfault if the items in the queue are 
+// not in the heap
+void queue_hfree(queue *queue)
 {
   while(queue->length > 0)
   {
     struct node* cur = queue_node_dequeue(queue);
-    if(item_type == ITEM_HEAP)
-      free(cur->ptr);
-
+    free(cur->ptr);
     free(cur);
     queue->length--;
   }
 }
+
+// free a queue
+void queue_free(queue *queue)
+{
+  while(queue->length > 0)
+  {
+    struct node* cur = queue_node_dequeue(queue);
+    free(cur);
+    queue->length--;
+  }
+}
+
 
 
 

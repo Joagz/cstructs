@@ -8,6 +8,6 @@ queue * new_queue();
 void queue_enqueue(queue *queue, void* ptr);
 void *queue_dequeue(queue *queue);
 void queue_delete_first(queue *queue);
-void queue_free(queue *queue, int item_type);
-
+void queue_hfree(queue *queue);
+void queue_free(queue *queue);
 #endif // !QUEUE_H

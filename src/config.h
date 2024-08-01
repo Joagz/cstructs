@@ -10,11 +10,4 @@
 #define SYS_32BIT_PTR_SIZE 4
 #define SYS_16BIT_PTR_SIZE 2
 
-#define SYS_TYPE 0x01
-
-#define ITEM_STACK 0
-#define ITEM_HEAP 1
-#define ITEM_DEFAULT ITEM_STACK
-
-
 #endif // !CONFIG_H

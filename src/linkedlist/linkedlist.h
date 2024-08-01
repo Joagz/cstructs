@@ -22,6 +22,7 @@ void linkedlist_append(struct linkedlist *linkedlist, void*ptr);
 struct node *linkedlist_delete(struct linkedlist *linkedlist, int index);
 struct node *linkedlist_get(struct linkedlist *linkedlist, int index);
 struct node *linkedlist_pop(struct linkedlist *linkedlist);
+void linkedlist_tfree(struct linkedlist *ptr);
 void linkedlist_free(struct linkedlist *ptr);
 
 #endif // !LINKEDLIST_H 

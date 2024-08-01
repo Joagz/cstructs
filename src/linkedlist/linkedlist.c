@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include "config.h"
 
 struct linkedlist *linkedlist_new()
 {
@@ -44,6 +45,29 @@ void linkedlist_append(struct linkedlist *linkedlist, void* ptr)
   linkedlist->length++;
 }
 
+// free a linkedlist with heap elements
+// this function automatically frees the nodes and 
+// pointers that each node point to
+//
+// will cause a segfault if the items in the list are 
+// not in the heap
+void linkedlist_hfree(struct linkedlist *ptr)
+{
+  if(ptr == NULL) return;
+  struct node* cur = ptr->head;
+  struct node* next = NULL;
+
+  while(cur->next != NULL)  {
+    next = cur->next;
+    free(cur->ptr);
+    free(cur);
+    cur = next;
+  }
+
+  free(ptr);
+}
+
+// free a linkedlist 
 void linkedlist_free(struct linkedlist *ptr)
 {
   if(ptr == NULL) return;
