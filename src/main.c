@@ -46,9 +46,9 @@ void testdarr()
 
 void linkedlisttest()
 {
-  
+
   struct linkedlist *l = linkedlist_new();
- 
+
   printf("linkedlist created successfully\n");
   int num = 0;
   int num1 = 1;
@@ -68,13 +68,13 @@ void linkedlisttest()
 
 void queuetest()
 {
-  
+
   queue *queue = new_queue();
 
   char *str1 = strdup("Hola");
   char *str2 = strdup("Mundo");
   char *str3 = strdup("!\n");
-  
+
   queue_enqueue(queue, (void*) str1);
   queue_enqueue(queue, (void*) str2);
   queue_enqueue(queue, (void*) str3);
