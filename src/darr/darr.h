@@ -10,7 +10,6 @@ struct darr {
   uint32_t initial_capacity;
 };
 
-
 struct darr* darr_new(uint32_t capacity);
 void darr_free(struct darr *ptr);
 int darr_add(struct darr *arr, void*ptr);
