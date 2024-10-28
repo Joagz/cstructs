@@ -97,7 +97,9 @@ int main(int argc, char *argv[])
   printf("-DSYS_TYPE={your system type flag value}\n");
   return EXIT_FAILURE;
 #endif /* ifndef SYS_TYPE */
- testdarr(); 
+  testdarr(); 
+  linkedlisttest();
+  queuetest();
 }
 
 
